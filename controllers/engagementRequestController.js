@@ -123,8 +123,35 @@ exports.engagementRenewal = async (req, res) => {
 		engagementRequest.status = status;
 		engagementRequest.attachment = attachment;
 
-        console.log(req.params.id);
-        console.log(attachment);
+		await engagementRequest.save();
+
+		return res.status(200).json({ message: "Engagement Request Renewed Successfully!" });
+	} catch (error) {
+		console.error("Error renewing engagement request:", error);
+		return res.status(500).json({ message: "Server Error!" });
+	}
+};
+
+// Renew engagement request
+exports.slaUpload = async (req, res) => {
+	try {
+		if (!req.file) {
+			console.error("No File Submitted!");
+			return res.status(400).json({ message: "No File Submitted!" });
+		}
+
+		const sla = req.file.filename;
+
+		const engagementRequest = await EngagementRequest.findById(req.params.id);
+
+		if (!engagementRequest) {
+			return res.status(404).json({ message: "Engagement Request Not Found!" });
+		}
+
+		engagementRequest.sla = sla;
+
+		console.log(req.params.id);
+		console.log(sla);
 
 		await engagementRequest.save();
 
@@ -133,4 +160,20 @@ exports.engagementRenewal = async (req, res) => {
 		console.error("Error renewing engagement request:", error);
 		return res.status(500).json({ message: "Server Error!" });
 	}
+};
+
+// Serve sla file
+exports.getSLA = async (req, res) => {
+	const sla = req.params.sla;
+	const filePath = path.join(__dirname, "..", "uploads", sla);
+
+	fs.access(filePath, fs.constants.F_OK, (error) => {
+		if (error) {
+			console.error("SLA not found:", error);
+			res.status(404).json({ message: "SLA Not Found!" });
+			return;
+		}
+
+		res.download(filePath); // Serve the file for download
+	});
 };

@@ -38,5 +38,7 @@ router.get("/attachments/:attachment", engagementRequestController.getAttachment
 router.put("/engagement-requests/:id/approve", engagementRequestController.approveEngagementRequest);
 router.put("/engagement-requests/:id/reject", engagementRequestController.rejectEngagementRequest);
 router.put("/engagement-renewal/:id", upload.single("file"), engagementRequestController.engagementRenewal);
+router.put("/sla-upload/:id", upload.single("file"), engagementRequestController.slaUpload);
+router.get("/sla-download/:sla", engagementRequestController.getSLA);
 
 module.exports = router;

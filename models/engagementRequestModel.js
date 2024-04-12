@@ -8,7 +8,6 @@ const engagementRequestSchema = new mongoose.Schema({
 	outsourcingType: { type: String, required: true },
 	status: { type: String, required: true },
 	attachment: { type: String, required: true },
-	sla: { type: String },
 });
 
 module.exports = mongoose.model("EngagementRequest", engagementRequestSchema);

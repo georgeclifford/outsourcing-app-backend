@@ -43,7 +43,7 @@ exports.activateUser = async (req, res) => {
 		res.status(200).json({ message: "User Activated Successfully!" });
 	} catch (error) {
 		console.error("Error activating user:", error);
-		res.status(500).json({ message: "Server Error" });
+		res.status(500).json({ message: "Server Error!" });
 	}
 };
 
@@ -62,6 +62,6 @@ exports.deactivateUser = async (req, res) => {
 		res.status(200).json({ message: "User Deactivated Successfully!" });
 	} catch (error) {
 		console.error("Error deactivating user:", error);
-		res.status(500).json({ message: "Server Error" });
+		res.status(500).json({ message: "Server Error!" });
 	}
 };

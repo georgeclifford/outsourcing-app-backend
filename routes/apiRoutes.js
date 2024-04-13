@@ -8,6 +8,7 @@ const userController = require("../controllers/userController");
 const engagementRequestController = require("../controllers/engagementRequestController");
 const slaController = require("../controllers/slaController");
 const taskController = require("../controllers/taskController");
+const performanceController = require("../controllers/performanceController");
 const regulatoryController = require("../controllers/regulatoryController");
 
 const storage = multer.diskStorage({
@@ -35,13 +36,13 @@ router.put("/users/:id/activate", userController.activateUser);
 router.put("/users/:id/deactivate", userController.deactivateUser);
 
 // Engagement Request routes
-router.post("/new-engagement-request", upload.single("file"), engagementRequestController.newEngagementRequest);
+router.post("/new-engagement-request",upload.single("file"),engagementRequestController.newEngagementRequest);
 router.get("/get-engagement-requests", engagementRequestController.getEngagementRequests);
 router.get("/attachments/:attachment", engagementRequestController.getAttachment);
 router.put("/engagement-requests/:id/review", engagementRequestController.reviewEngagementRequest);
-router.put("/engagement-requests/:id/approve", engagementRequestController.approveEngagementRequest);
+router.put("/engagement-requests/:id/approve",engagementRequestController.approveEngagementRequest);
 router.put("/engagement-requests/:id/reject", engagementRequestController.rejectEngagementRequest);
-router.put("/engagement-renewal/:id", upload.single("file"), engagementRequestController.engagementRenewal);
+router.put("/engagement-renewal/:id",upload.single("file"),engagementRequestController.engagementRenewal);
 
 // SLA routes
 router.put("/new-sla/:id", upload.single("file"), slaController.newSLA);
@@ -55,6 +56,10 @@ router.put("/sla/:id/reject", slaController.rejectSLA);
 router.post("/new-task", taskController.newTask);
 router.get("/get-tasks", taskController.getTasks);
 router.put("/tasks/:id/complete", taskController.completeTask);
+
+// Regulatory routes
+router.post("/add-performance", performanceController.addPerformance);
+router.get("/get-performance", performanceController.getPerformance);
 
 // Regulatory routes
 router.post("/new-regulatory", regulatoryController.newRegulatory);

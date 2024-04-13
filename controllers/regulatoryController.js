@@ -1,6 +1,6 @@
 const Regulatory = require("../models/regulatoryModel");
 
-// New task
+// New regulatory
 exports.newRegulatory = async (req, res) => {
 	try {
 		const { thirdPartyId, description, cardNumber, nameOnCard, expirationDate, cvv, amount, date } = req.body;
@@ -22,7 +22,7 @@ exports.newRegulatory = async (req, res) => {
 	}
 };
 
-// Fetch all tasks
+// Fetch all regulatories
 exports.getRegulatory = async (req, res) => {
 	try {
 		const regulatory = await Regulatory.find();

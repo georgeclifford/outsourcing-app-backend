@@ -1,6 +1,6 @@
 const Performance = require("../models/performanceModel");
 
-// New task
+// New performance
 exports.addPerformance = async (req, res) => {
 	try {
 		const { thirdPartyId, performanceArea, date, rating, comments } = req.body;
@@ -19,7 +19,7 @@ exports.addPerformance = async (req, res) => {
 	}
 };
 
-// Fetch all tasks
+// Fetch all performances
 exports.getPerformance = async (req, res) => {
 	try {
 		const performance = await Performance.find();

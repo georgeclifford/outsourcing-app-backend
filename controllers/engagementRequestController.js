@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const EngagementRequest = require("../models/engagementRequestModel");
 const SLA = require("../models/slaModel");
+const ThirdParty = require("../models/thirdPartyModel");
 
 exports.newEngagementRequest = async (req, res) => {
 	try {
@@ -158,6 +159,13 @@ exports.engagementRenewal = async (req, res) => {
 		if (sla) {
 			sla.status = "SLA Not Uploaded"; // Update the status
 			await sla.save();
+		}
+
+		const thirdParty = await ThirdParty.findOne({ thirdPartyId: id });
+
+		if (thirdParty) {
+			thirdParty.status = "Inactive"; // Update the status
+			await thirdParty.save();
 		}
 
 		return res.status(200).json({ message: "Engagement Request Renewed Successfully!" });

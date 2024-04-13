@@ -7,6 +7,7 @@ const signInController = require("../controllers/signInController");
 const userController = require("../controllers/userController");
 const engagementRequestController = require("../controllers/engagementRequestController");
 const slaController = require("../controllers/slaController");
+const thirdPartyController = require("../controllers/thirdPartyController");
 const taskController = require("../controllers/taskController");
 const performanceController = require("../controllers/performanceController");
 const regulatoryController = require("../controllers/regulatoryController");
@@ -51,6 +52,13 @@ router.get("/download-sla/:sla", slaController.downloadSLA);
 router.put("/sla/:id/review", slaController.reviewSLA);
 router.put("/sla/:id/approve", slaController.approveSLA);
 router.put("/sla/:id/reject", slaController.rejectSLA);
+
+// Third Party routes
+router.post("/new-third-party", thirdPartyController.newThirdParty);
+router.get("/get-third-party", thirdPartyController.getThirdParty);
+router.put("/third-party/:id/activate", thirdPartyController.activateThirdParty);
+router.put("/third-party/:id/deactivate", thirdPartyController.deactivateThirdParty);
+router.put("/edit-third-party/:id",thirdPartyController.editThirdParty);
 
 // Task routes
 router.post("/new-task", taskController.newTask);

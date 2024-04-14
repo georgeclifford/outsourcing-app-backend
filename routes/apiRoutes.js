@@ -5,10 +5,12 @@ const path = require("path");
 const registrationController = require("../controllers/registrationController");
 const signInController = require("../controllers/signInController");
 const userController = require("../controllers/userController");
+const cardController = require("../controllers/cardController");
 const engagementRequestController = require("../controllers/engagementRequestController");
 const slaController = require("../controllers/slaController");
 const thirdPartyController = require("../controllers/thirdPartyController");
 const taskController = require("../controllers/taskController");
+const riskAssessmentController = require("../controllers/riskAssessmentController");
 const performanceController = require("../controllers/performanceController");
 const regulatoryController = require("../controllers/regulatoryController");
 
@@ -35,6 +37,10 @@ router.get("/users", userController.getAllUsers);
 router.put("/users/:id", userController.updateUserRole);
 router.put("/users/:id/activate", userController.activateUser);
 router.put("/users/:id/deactivate", userController.deactivateUser);
+
+// Card routes
+router.get("/get-cards", cardController.getCards);
+router.post("/update-cards", cardController.updateCards);
 
 // Engagement Request routes
 router.post("/new-engagement-request",upload.single("file"),engagementRequestController.newEngagementRequest);
@@ -65,7 +71,13 @@ router.post("/new-task", taskController.newTask);
 router.get("/get-tasks", taskController.getTasks);
 router.put("/tasks/:id/complete", taskController.completeTask);
 
-// Regulatory routes
+// Risk Assessment routes
+router.post("/new-risk-assessment", riskAssessmentController.newRiskAssessment);
+router.get("/get-risk-assessment", riskAssessmentController.getRiskAssessment);
+router.put("/risk-assessment/:id/resolve", riskAssessmentController.resolveRiskAssessment);
+router.put("/risk-assessment/:id/unresolvable", riskAssessmentController.unresolvableRiskAssessment);
+
+// Performance routes
 router.post("/add-performance", performanceController.addPerformance);
 router.get("/get-performance", performanceController.getPerformance);
 

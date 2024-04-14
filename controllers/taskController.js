@@ -3,11 +3,12 @@ const Task = require("../models/taskModel");
 // New task
 exports.newTask = async (req, res) => {
 	try {
-		const { thirdPartyId, description, assignTo, priority, dueDate, status } = req.body;
+		const { thirdPartyId, description, assignToDepartment, assignToRole, priority, dueDate, status } = req.body;
 		const newTask = new Task({
 			thirdPartyId,
 			description,
-			assignTo,
+			assignToDepartment,
+			assignToRole,
 			priority,
 			dueDate,
 			status,

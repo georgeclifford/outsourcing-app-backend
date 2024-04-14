@@ -12,6 +12,12 @@ exports.newThirdParty = async (req, res) => {
 			status,
 		} = req.body;
 
+		// Check if the third party already exists
+		const existingThirdParty = await ThirdParty.findOne({ thirdPartyId: thirdPartyId });
+		if (existingThirdParty) {
+			return res.status(400).json({ message: "Third Party Already Exists!" });
+		}
+
 		const newThirdParty = new ThirdParty({
 			thirdPartyId,
 			email,
@@ -21,10 +27,10 @@ exports.newThirdParty = async (req, res) => {
 			status,
 		});
 		await newThirdParty.save();
-		res.status(201).json({ message: "Third Party Created Successfully!" });
+		return res.status(201).json({ message: "Third Party Created Successfully!" });
 	} catch (error) {
 		console.error("Error creating third party:", error);
-		res.status(500).json({ message: "Server Error!" });
+		return res.status(500).json({ message: "Server Error!" });
 	}
 };
 

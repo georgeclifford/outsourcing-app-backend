@@ -41,7 +41,7 @@ exports.resolveRiskAssessment = async (req, res) => {
 		// Update user status to Active
 		riskAssessment.status = "Resolved";
 		await riskAssessment.save();
-		res.status(200).json({ message: "Risk Assessment Resolved!" });
+		res.status(200).json({ message: "Risk Resolved!" });
 	} catch (error) {
 		console.error("Error:", error);
 		res.status(500).json({ message: "Server Error!" });
@@ -60,7 +60,7 @@ exports.unresolvableRiskAssessment = async (req, res) => {
 		// Update user status to Active
 		riskAssessment.status = "Unresolvable";
 		await riskAssessment.save();
-		res.status(200).json({ message: "Risk Assessment Unresolvable!" });
+		res.status(200).json({ message: "Risk Unresolvable!" });
 	} catch (error) {
 		console.error("Error:", error);
 		res.status(500).json({ message: "Server Error!" });

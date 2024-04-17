@@ -3,14 +3,7 @@ const ThirdParty = require("../models/thirdPartyModel");
 // New third party
 exports.newThirdParty = async (req, res) => {
 	try {
-		const {
-			thirdPartyId,
-			email,
-			addressDetails,
-			typeOfServiceProvider,
-			accessToCriticalData,
-			status,
-		} = req.body;
+		const { thirdPartyId, email, addressDetails, typeOfServiceProvider, accessToCriticalData, status } = req.body;
 
 		// Check if the third party already exists
 		const existingThirdParty = await ThirdParty.findOne({ thirdPartyId: thirdPartyId });

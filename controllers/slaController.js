@@ -33,6 +33,27 @@ exports.newSLA = async (req, res) => {
 	}
 };
 
+// Add SLA Comment
+exports.commentSLA = async (req, res) => {
+	try {
+		const { approverComment } = req.body;
+
+		const thirdPartyId = req.params.id;
+
+		const existingSLA = await SLA.findOne({ thirdPartyId });
+		if (existingSLA) {
+			existingSLA.approverComment = approverComment;
+			await existingSLA.save();
+			res.status(201).json({ message: "Comment Added Successfully!" });
+		} else {
+			return res.status(400).json({ message: "SLA Not Uploaded!" });
+		}
+	} catch (error) {
+		console.error("Error adding SLA:", error);
+		res.status(500).json({ message: "Server Error!" });
+	}
+};
+
 // Fetch all SLAs
 exports.getSLA = async (req, res) => {
 	try {

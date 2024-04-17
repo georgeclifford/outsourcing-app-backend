@@ -158,6 +158,8 @@ exports.engagementRenewal = async (req, res) => {
 
 		if (sla) {
 			sla.status = "SLA Not Uploaded"; // Update the status
+			sla.sla = null;
+			sla.approverComment = null;
 			await sla.save();
 		}
 

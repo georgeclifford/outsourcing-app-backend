@@ -43,17 +43,18 @@ router.get("/get-cards", cardController.getCards);
 router.post("/update-cards", cardController.updateCards);
 
 // Engagement Request routes
-router.post("/new-engagement-request",upload.single("file"),engagementRequestController.newEngagementRequest);
+router.post("/new-engagement-request", upload.single("file"), engagementRequestController.newEngagementRequest);
 router.get("/get-engagement-requests", engagementRequestController.getEngagementRequests);
 router.get("/attachments/:attachment", engagementRequestController.getAttachment);
 router.put("/engagement-requests/:id/review", engagementRequestController.reviewEngagementRequest);
-router.put("/engagement-requests/:id/approve",engagementRequestController.approveEngagementRequest);
+router.put("/engagement-requests/:id/approve", engagementRequestController.approveEngagementRequest);
 router.put("/engagement-requests/:id/reject", engagementRequestController.rejectEngagementRequest);
-router.put("/engagement-renewal/:id",upload.single("file"),engagementRequestController.engagementRenewal);
+router.put("/engagement-renewal/:id", upload.single("file"), engagementRequestController.engagementRenewal);
 
 // SLA routes
 router.put("/new-sla/:id", upload.single("file"), slaController.newSLA);
 router.get("/get-sla", slaController.getSLA);
+router.put("/sla-comment/:id", slaController.commentSLA);
 router.get("/download-sla/:sla", slaController.downloadSLA);
 router.put("/sla/:id/review", slaController.reviewSLA);
 router.put("/sla/:id/approve", slaController.approveSLA);
@@ -64,7 +65,7 @@ router.post("/new-third-party", thirdPartyController.newThirdParty);
 router.get("/get-third-party", thirdPartyController.getThirdParty);
 router.put("/third-party/:id/activate", thirdPartyController.activateThirdParty);
 router.put("/third-party/:id/deactivate", thirdPartyController.deactivateThirdParty);
-router.put("/edit-third-party/:id",thirdPartyController.editThirdParty);
+router.put("/edit-third-party/:id", thirdPartyController.editThirdParty);
 
 // Task routes
 router.post("/new-task", taskController.newTask);

@@ -10,13 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(
-	"mongodb+srv://george:grg@cluster0.4t4uabs.mongodb.net/outsourcingDb?retryWrites=true&w=majority",
-	{
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	}
-);
+mongoose.connect("mongodb+srv://george:grg@cluster0.4t4uabs.mongodb.net/outsourcingDb?retryWrites=true&w=majority", {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
 
 // API Routes
 app.use("/api/outsourcing", outsourcingRoutes);

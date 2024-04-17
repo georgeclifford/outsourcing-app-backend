@@ -6,7 +6,7 @@ exports.newRegulatory = async (req, res) => {
 		const { thirdPartyId, description, cardNumber, nameOnCard, expirationDate, cvv, amount, date } = req.body;
 		const newRegulatory = new Regulatory({
 			thirdPartyId,
-            description,
+			description,
 			cardNumber,
 			nameOnCard,
 			expirationDate,
